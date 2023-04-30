@@ -60,19 +60,27 @@ import setuptools
 
 setuptools.setup(
     name="Prepup",
-    version="0.0.4",
+    version="0.0.5",
+    license='MIT',
     author="Sudhanshu Mukherjee",
     author_email="sudhanshumukherjeexx@gmail.com",
     description="Prepup is a free, open-source package that lets you open, explore, visualize and pre-process datasets in your computer's terminal.",
+    url='https://github.com/sudhanshumukherjeexx/prepup',
+    keywords=['DATA PREPROCESSING','TERMINAL', 'DATA SCIENCE', 'EDA'],
     packages=setuptools.find_packages(),
     entry_points={
         "console_scripts": [
             "prepup = prepup.prepup:main",
         ]
     },
-    url='https://github.com/sudhanshumukherjeexx/prepup',
     classifiers=[
         "Programming Language :: Python :: 3",
+        'Programming Language :: Python :: 3.6',
+        'Programming Language :: Python :: 3.7',
+        'Programming Language :: Python :: 3.8',
+        'Programming Language :: Python :: 3.9',
+        'Programming Language :: Python :: 3.10',
+        'Programming Language :: Python :: 3.11',
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
     ],
