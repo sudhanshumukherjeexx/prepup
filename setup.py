@@ -60,7 +60,7 @@ import setuptools
 
 setuptools.setup(
     name="Prepup",
-    version="0.0.3",
+    version="0.0.4",
     author="Sudhanshu Mukherjee",
     author_email="sudhanshumukherjeexx@gmail.com",
     description="Prepup is a free, open-source package that lets you open, explore, visualize and pre-process datasets in your computer's terminal.",
