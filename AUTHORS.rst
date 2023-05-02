@@ -1,0 +1,13 @@
+=======
+Credits
+=======
+
+Development Lead
+----------------
+
+* Sudhanshu Mukherjee <sudhanshumukherjeexx@gmail.com>
+
+Contributors
+------------
+
+None yet. Why not be the first?
