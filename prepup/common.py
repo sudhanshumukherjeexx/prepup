@@ -10,7 +10,10 @@ import io
 import nbformat as nbf
 import os
 from sklearn.preprocessing import StandardScaler
+from sklearn.preprocessing import RobustScaler
 from scipy.stats import shapiro
+from scipy.stats import skew
+from scipy.stats import kurtosis
 from termcolor import colored
 from pyfiglet import Figlet
 
@@ -114,7 +117,7 @@ class Prepup:
             else:
                 non_empty_count += 1
         if empty_count == 0:
-            print(colored(term_font.renderText("No Missing Value Found"), 'green+'))
+            print(colored(term_font.renderText("No Missing Value Found"), 'green'))
             #print("No Missing Value Found")
         else:
             missing_counts = self.dataframe.null_count()
@@ -143,7 +146,7 @@ class Prepup:
         #try:
         dataframe = self.dataframe.fill_null(0)
         for column in self.dataframe.columns:
-            if dataframe[column].dtype != pl.Categorical and dataframe[column].dtype != pl.Utf8 and dataframe[column].dtype != pl.Boolean and dataframe[column].dtype != pl.Null and dataframe[column].dtype != pl.Object and dataframe[column].dtype != pl.Unknown:
+            if dataframe[column].dtype != pl.Categorical and dataframe[column].dtype != pl.Datetime and dataframe[column].dtype != pl.Utf8 and dataframe[column].dtype != pl.Boolean and dataframe[column].dtype != pl.Null and dataframe[column].dtype != pl.Datetime and dataframe[column].dtype != pl.Object and dataframe[column].dtype != pl.Unknown:
                 tpl.clear_data()
                 tpl.theme('dark')
                 tpl.plotsize(80,20)
@@ -268,10 +271,21 @@ class Prepup:
         else:
             df = dataframe.to_pandas()
         
-        for column in df.columns:
-            if dataframe[column].dtype != pl.Categorical and dataframe[column].dtype != pl.Utf8 and dataframe[column].dtype != pl.Boolean and dataframe[column].dtype != pl.Null and dataframe[column].dtype != pl.Object and dataframe[column].dtype != pl.Unknown:
-                scaler = StandardScaler()
-                df[[column]] = scaler.fit_transform(df[[column]])
+        
+        print("Choice Available for Standardization: \n")
+        print("\t1. [Press 1] Robust Scaler [Recommended if outliers are present.].\n")
+        print("\t2. [Press 2] Standard Scaler \n")
+        choice = int(input("\nEnter your choice: "))
+        if choice==1:
+            for column in df.columns:
+                if dataframe[column].dtype != pl.Categorical and dataframe[column].dtype != pl.Utf8 and dataframe[column].dtype != pl.Boolean and dataframe[column].dtype != pl.Null and dataframe[column].dtype != pl.Object and dataframe[column].dtype != pl.Unknown:
+                    robust = RobustScaler()
+                    df[[column]] = robust.fit_transform(df[[column]])
+        else:    
+            for column in df.columns:
+                if dataframe[column].dtype != pl.Categorical and dataframe[column].dtype != pl.Utf8 and dataframe[column].dtype != pl.Boolean and dataframe[column].dtype != pl.Null and dataframe[column].dtype != pl.Object and dataframe[column].dtype != pl.Unknown:
+                    scaler = StandardScaler()
+                    df[[column]] = scaler.fit_transform(df[[column]])
         
         data_path = input("\nEnter path to save normalized data : ")
         path = data_path  
@@ -301,14 +315,14 @@ class Prepup:
         #try:
         dataframe = self.dataframe
         for column in dataframe.columns:
-            if dataframe[column].dtype != pl.Categorical and dataframe[column].dtype != pl.Utf8 and dataframe[column].dtype != pl.Boolean and dataframe[column].dtype != pl.Null and dataframe[column].dtype != pl.Object and dataframe[column].dtype != pl.Unknown:
+            if dataframe[column].dtype != pl.Categorical and dataframe[column].dtype != pl.Utf8 and dataframe[column].dtype != pl.Boolean and dataframe[column].dtype != pl.Null and dataframe[column].dtype != pl.Object and dataframe[column].dtype != pl.Datetime and dataframe[column].dtype != pl.Unknown:
                 stats, p_value = shapiro(dataframe[column])
                 if p_value > 0.05:
                     h_8 = Figlet(font='term') 
                     print(colored(h_8.renderText(f"* {column} is Normally Distributed with a p-value of {p_value:.2f}\n"),'green'))
                 else:
                     h_8 = Figlet(font='term')
-                    print(colored(h_8.renderText(f"* {column} doesn't have a Normal Distribution with a p-value of {p_value:.8f} \n"), 'red'))
+                    print(colored(h_8.renderText(f"* {column} doesn't have a Normal Distribution with a p-value of {p_value} \n"), 'red'))
         # except:
         #     print("Something went wrong....\nFailed to perform Feature Scaling...\nPlease try again...")
 
@@ -323,13 +337,27 @@ class Prepup:
         :author: Neokai
         """
         dataframe = self.dataframe.to_pandas()
-        val = input("Enter the Target Variable: ")
-        
-        target_dist = dataframe[val].value_counts()
-        tpl.simple_bar(target_dist.index, target_dist.values, width=100,title='Target Variable Distribution',color=92)
-        tpl.show()
-        tpl.clear_data()
+        val = input("Enter the Target Variable or ('None'): ")
+        if val != "None":
+            target_dist = dataframe[val].value_counts()
+            tpl.simple_bar(target_dist.index, target_dist.values, width=100,title='Target Variable Distribution',color=92)
+            tpl.show()
+            tpl.clear_data()
+        else:
+            print("This Function is Terminated.")
     
+    def skewness(self):
+        dataframe = self.dataframe
+        dataframe = dataframe.to_pandas()
+        numeric_data = dataframe.select_dtypes(['number'])
+        print("\t\nSkewness present in the data: ",skew(numeric_data, axis=0, bias=True))
+    
+    def kurtosis(self):
+        dataframe = self.dataframe
+        dataframe = dataframe.to_pandas()
+        numeric_data = dataframe.select_dtypes(['number'])
+        print("\t\nKurtosis present in the data: ",kurtosis(numeric_data, axis=0, bias=True))
+
 
     def handle_missing_values(self):
         """
@@ -356,22 +384,78 @@ class Prepup:
         if choice == 1:
             dataframe = dataframe.drop_nulls()
             dataframe.write_parquet("missing_data.parquet")
+            data_path = input("\nEnter path to save Imputed data : ")
+            path = data_path  
+            s = "\\"
+            if s in path:
+                path = path.replace(os.sep, '/')
+                path = path + "/MissingDataImputed.csv" 
+                path = str(path)
+                print(path)
+            else:
+                path = path + "/MissingDataImputed.csv"
+        
+            dataframe.write_csv(path)
+            print("\nMissing Data Imputed and saved succesfully")
+            print(colored(term_font.renderText("\nDone...")))
         elif choice == 2:
             mv = int(input("Enter the value to replace missing data: "))
             dataframe = dataframe.fill_null(mv)
             dataframe.write_parquet("missing_data.parquet")
+            data_path = input("\nEnter path to save Imputed data : ")
+            path = data_path  
+            s = "\\"
+            if s in path:
+                path = path.replace(os.sep, '/')
+                path = path + "/MissingDataImputed.csv" 
+                path = str(path)
+                print(path)
+            else:
+                path = path + "/MissingDataImputed.csv"
+        
+            dataframe.write_csv(path)
+            print("\nMissing Data Imputed and saved succesfully")
+            print(colored(term_font.renderText("\nDone...")))
         elif choice == 3:
             dataframe = dataframe.to_pandas()
             for column in dataframe.columns:
                 if dataframe[column].dtype != pl.Categorical and dataframe[column].dtype != pl.Utf8 and dataframe[column].dtype != pl.Boolean and dataframe[column].dtype != pl.Null and dataframe[column].dtype != pl.Object and dataframe[column].dtype != pl.Unknown:
                     dataframe[column] = dataframe[column].fillna(dataframe[column].mean())
             dataframe.to_parquet("missing_data.parquet")
+            data_path = input("\nEnter path to save Imputed data : ")
+            path = data_path  
+            s = "\\"
+            if s in path:
+                path = path.replace(os.sep, '/')
+                path = path + "/MissingDataImputed.csv" 
+                path = str(path)
+                print(path)
+            else:
+                path = path + "/MissingDataImputed.csv"
+        
+            dataframe.to_csv(path)
+            print("\nMissing Data Imputed and saved succesfully")
+            print(colored(term_font.renderText("\nDone...")))
         elif choice == 4:
             dataframe = dataframe.to_pandas()
             for column in dataframe.columns:
                 if dataframe[column].dtype != pl.Categorical and dataframe[column].dtype != pl.Utf8 and dataframe[column].dtype != pl.Boolean and dataframe[column].dtype != pl.Null and dataframe[column].dtype != pl.Object and dataframe[column].dtype != pl.Unknown:
                     dataframe[column] = dataframe[column].fillna(dataframe[column].median())
             dataframe.to_parquet("missing_data.parquet")
+            data_path = input("\nEnter path to save Imputed data : ")
+            path = data_path  
+            s = "\\"
+            if s in path:
+                path = path.replace(os.sep, '/')
+                path = path + "/MissingDataImputed.csv" 
+                path = str(path)
+                print(path)
+            else:
+                path = path + "/MissingDataImputed.csv"
+        
+            dataframe.to_csv(path)
+            print("\nMissing Data Imputed and saved succesfully")
+            print(colored(term_font.renderText("\nDone...")))
         elif choice == 5:
             dataframe = dataframe.to_pandas()
             for column in dataframe.columns:
@@ -381,12 +465,54 @@ class Prepup:
                     random_values = np.random.normal(loc=mean, scale=std, size=dataframe[column].isnull().sum())
                     dataframe[column] = dataframe[column].fillna(pd.Series(random_values,index=dataframe[column][dataframe[column].isnull()].index))
             dataframe.to_parquet("missing_data.parquet")
+            data_path = input("\nEnter path to save Imputed data : ")
+            path = data_path  
+            s = "\\"
+            if s in path:
+                path = path.replace(os.sep, '/')
+                path = path + "/MissingDataImputed.csv" 
+                path = str(path)
+                print(path)
+            else:
+                path = path + "/MissingDataImputed.csv"
+        
+            dataframe.to_csv(path)
+            print("\nMissing Data Imputed and saved succesfully")
+            print(colored(term_font.renderText("\nDone...")))
         elif choice == 6:
             dataframe = dataframe.fill_null(strategy="forward")
             dataframe.write_parquet("missing_data.parquet")
+            data_path = input("\nEnter path to save Imputed data : ")
+            path = data_path  
+            s = "\\"
+            if s in path:
+                path = path.replace(os.sep, '/')
+                path = path + "/MissingDataImputed.csv" 
+                path = str(path)
+                print(path)
+            else:
+                path = path + "/MissingDataImputed.csv"
+        
+            dataframe.write_csv(path)
+            print("\nMissing Data Imputed and saved succesfully")
+            print(colored(term_font.renderText("\nDone...")))
         elif choice == 7: 
             dataframe = dataframe.fill_null(strategy="backward")
             dataframe.write_parquet("missing_data.parquet")
+            data_path = input("\nEnter path to save Imputed data : ")
+            path = data_path  
+            s = "\\"
+            if s in path:
+                path = path.replace(os.sep, '/')
+                path = path + "/MissingDataImputed.csv" 
+                path = str(path)
+                print(path)
+            else:
+                path = path + "/MissingDataImputed.csv"
+        
+            dataframe.write_csv(path)
+            print("\nMissing Data Imputed and saved succesfully")
+            print(colored(term_font.renderText("\nDone...")))
         elif choice == 8: 
             dataframe = dataframe.to_pandas()
             for column in dataframe.columns:
@@ -397,10 +523,22 @@ class Prepup:
                     closest_inds = np.abs(dataframe[column][missing_inds].values - non_missing_vals.values.reshape(-1,1)).argmin(axis=0)
                     dataframe.loc[missing_inds, column] = non_missing_vals.iloc[closest_inds].values
             dataframe.to_parquet("missing_data.parquet")
-        print(colored(term_font.renderText("\nDone...")))
-        # except:
-        #     print("Something went wrong....\nFailed to perform Feature Scaling...\nPlease try again...")
+            data_path = input("\nEnter path to save Imputed data : ")
+            path = data_path  
+            s = "\\"
+            if s in path:
+                path = path.replace(os.sep, '/')
+                path = path + "/MissingDataImputed.csv" 
+                path = str(path)
+                print(path)
+            else:
+                path = path + "/MissingDataImputed.csv"
+        
+            dataframe.to_csv(path)
+            print("\nMissing Data Imputed and saved succesfully")
+            print(colored(term_font.renderText("\nDone...")))
 
+            
         
         
 
