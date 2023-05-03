@@ -5,7 +5,6 @@
 [![image](https://img.shields.io/conda/vn/conda-forge/prepup.svg)](https://anaconda.org/conda-forge/prepup)
 
 
-![image](C:\Users\Asus\prepup\logo.png)
 
 ### Prepup is a free open-source package that lets you inspect, explore, visualize, and perform pre-processing tasks on datasets in your computer’s terminal.
 
