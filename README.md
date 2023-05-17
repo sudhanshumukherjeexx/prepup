@@ -2,11 +2,11 @@
 
 
 [![image](https://img.shields.io/pypi/v/prepup.svg)](https://pypi.python.org/pypi/prepup)
-[![image](https://img.shields.io/conda/vn/conda-forge/prepup.svg)](https://anaconda.org/conda-forge/prepup)
+<!-- [![image](https://img.shields.io/conda/vn/conda-forge/prepup.svg)](https://anaconda.org/conda-forge/prepup) -->
 
 
 
-### Prepup is a free open-source package that lets you inspect, explore, visualize, and perform pre-processing tasks on datasets in your computer’s terminal.
+### Prepup is a free open-source package that lets you inspect, explore, visualize, and perform pre-processing tasks on datasets in your windows/macOS terminal.
 
 ## Installation
 -   Prepup can be installed using the Pip package manager.
@@ -59,14 +59,14 @@
 ## prepup <File name or File path> -impute
 - There are 8 different strategies available to impute missing data using Prepup
 
-    - Option 1 – Drops the Missing Data
-    - Option 2 – Impute Missing values with a Specific value
-    - Option 3 – Impute Missing values with Mean.
-    - Option 4 – Impute Missing values with Median.
-    - Option 5 – Impute Missing value based on the distribution of existing columns.
-    - Option 6 – Impute Missing values based on Forward Fill Strategy where missing values are imputed based on the previous data points.
+    - Option 1 - Drops the Missing Data
+    - Option 2 - Impute Missing values with a Specific value
+    - Option 3 - Impute Missing values with Mean.
+    - Option 4 - Impute Missing values with Median.
+    - Option 5 - Impute Missing value based on the distribution of existing columns.
+    - Option 6 - Impute Missing values based on Forward Fill Strategy where missing values are imputed based on the previous data points.
     - Option 7 - Impute Missing values based on Backward Strategy where missing values are imputed based on the next data points.
-    - Option 8 – Impute missing values based on K-Nearest Neighbors.
+    - Option 8 - Impute missing values based on K-Nearest Neighbors.
 
 ## prepup <File name or File path> -standardize
 

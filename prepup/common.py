@@ -419,7 +419,7 @@ class Prepup:
         elif choice == 3:
             dataframe = dataframe.to_pandas()
             for column in dataframe.columns:
-                if dataframe[column].dtype != pl.Categorical and dataframe[column].dtype != pl.Utf8 and dataframe[column].dtype != pl.Boolean and dataframe[column].dtype != pl.Null and dataframe[column].dtype != pl.Object and dataframe[column].dtype != pl.Unknown:
+                if dataframe[column].dtype != pl.Categorical and dataframe[column].dtype != pl.Date and dataframe[column].dtype != pl.Datetime and dataframe[column].dtype != pl.Duration and dataframe[column].dtype != pl.Time and dataframe[column].dtype != pl.Utf8 and dataframe[column].dtype != pl.Boolean and dataframe[column].dtype != pl.Null and dataframe[column].dtype != pl.Object and dataframe[column].dtype != pl.Unknown:
                     dataframe[column] = dataframe[column].fillna(dataframe[column].mean())
             dataframe.to_parquet("missing_data.parquet")
             data_path = input("\nEnter path to save Imputed data : ")
@@ -439,7 +439,7 @@ class Prepup:
         elif choice == 4:
             dataframe = dataframe.to_pandas()
             for column in dataframe.columns:
-                if dataframe[column].dtype != pl.Categorical and dataframe[column].dtype != pl.Utf8 and dataframe[column].dtype != pl.Boolean and dataframe[column].dtype != pl.Null and dataframe[column].dtype != pl.Object and dataframe[column].dtype != pl.Unknown:
+                if dataframe[column].dtype != pl.Categorical and dataframe[column].dtype != pl.Date and dataframe[column].dtype != pl.Datetime and dataframe[column].dtype != pl.Duration and dataframe[column].dtype != pl.Time and dataframe[column].dtype != pl.Utf8 and dataframe[column].dtype != pl.Boolean and dataframe[column].dtype != pl.Null and dataframe[column].dtype != pl.Object and dataframe[column].dtype != pl.Unknown:
                     dataframe[column] = dataframe[column].fillna(dataframe[column].median())
             dataframe.to_parquet("missing_data.parquet")
             data_path = input("\nEnter path to save Imputed data : ")
@@ -459,7 +459,7 @@ class Prepup:
         elif choice == 5:
             dataframe = dataframe.to_pandas()
             for column in dataframe.columns:
-                if dataframe[column].dtype != pl.Categorical and dataframe[column].dtype != pl.Utf8 and dataframe[column].dtype != pl.Boolean and dataframe[column].dtype != pl.Null and dataframe[column].dtype != pl.Object and dataframe[column].dtype != pl.Unknown:
+                if dataframe[column].dtype != pl.Categorical and dataframe[column].dtype != pl.Date and dataframe[column].dtype != pl.Datetime and dataframe[column].dtype != pl.Duration and dataframe[column].dtype != pl.Time and dataframe[column].dtype != pl.Utf8 and dataframe[column].dtype != pl.Boolean and dataframe[column].dtype != pl.Null and dataframe[column].dtype != pl.Object and dataframe[column].dtype != pl.Unknown:
                     mean = dataframe[column].mean()
                     std = dataframe[column].std()
                     random_values = np.random.normal(loc=mean, scale=std, size=dataframe[column].isnull().sum())
@@ -516,7 +516,7 @@ class Prepup:
         elif choice == 8: 
             dataframe = dataframe.to_pandas()
             for column in dataframe.columns:
-                if dataframe[column].dtype != pl.Categorical and dataframe[column].dtype != pl.Utf8 and dataframe[column].dtype != pl.Boolean and dataframe[column].dtype != pl.Null and dataframe[column].dtype != pl.Object and dataframe[column].dtype != pl.Unknown:
+                if dataframe[column].dtype != pl.Categorical and dataframe[column].dtype != pl.Date and dataframe[column].dtype != pl.Datetime and dataframe[column].dtype != pl.Duration and dataframe[column].dtype != pl.Time and dataframe[column].dtype != pl.Utf8 and dataframe[column].dtype != pl.Boolean and dataframe[column].dtype != pl.Null and dataframe[column].dtype != pl.Object and dataframe[column].dtype != pl.Unknown:
                     missing_inds = dataframe[column].isnull()
                     non_missing_inds = ~missing_inds
                     non_missing_vals = dataframe[column][non_missing_inds]
