@@ -27,7 +27,7 @@ def load_file(file_path):
     if file_path.endswith('.csv'):
         return pl.read_csv(file_path, ignore_errors=True)
     elif file_path.endswith('.xlsx'):
-        return pl.read_excel(file_path, ignore_errors=True)
+        return pl.read_excel(file_path)
     elif file_path.endswith('.parquet'):
         return pl.read_parquet(file_path)
     else:
