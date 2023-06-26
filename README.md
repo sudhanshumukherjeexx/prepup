@@ -40,23 +40,23 @@
 
 # Command Line Arguments available in PREPUP
 
-## prepup <File name or File path> -inspect
+## prepup "File name or File path" -inspect
 
 -   inspect flag takes the dataframe and returns the Features available, Features datatype and missing values present in the Dataset.
 
-## prepup <File name or File path> -explore
+## prepup "File name or File path" -explore
 
 -   explore flag takes the dataframe and returns the Features available, Features datatype, Correlation between features, Detects Outliers, Checks Normal Distribution, Checks Skewness, Checks Kurtosis and also allows the option to check if the dataset is Imbalanced.
 
-## prepup <File name or File path> -explore
+## prepup "File name or File path" -explore
 
 -   visualize flag plots the feature distribution directly on the terminal.
 
-## prepup <File name or File path> -visualize
+## prepup "File name or File path" -visualize
 
 -   visualize flag plots the feature distribution directly on the terminal.
 
-## prepup <File name or File path> -impute
+## prepup "File name or File path" -impute
 - There are 8 different strategies available to impute missing data using Prepup
 
     - Option 1 - Drops the Missing Data
@@ -68,7 +68,7 @@
     - Option 7 - Impute Missing values based on Backward Strategy where missing values are imputed based on the next data points.
     - Option 8 - Impute missing values based on K-Nearest Neighbors.
 
-## prepup <File name or File path> -standardize
+## prepup "File name or File path" -standardize
 
 -   Standardize allows you to standardize the dataset using two different methods:
     1. Robust Scaler
