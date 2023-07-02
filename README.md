@@ -38,24 +38,24 @@ Built with ♥️ by [Sudhanshu Mukherjee](https://www.linkedin.com/in/sudhanshu
 # Command Line Arguments available in PREPUP
 
 ## 🕵️ Prepup "File name or File path" -inspect
-File Name: If the current working directory is same as the file location or FILE PATH
 https://github.com/sudhanshumukherjeexx/prepup/assets/64360018/93da36fc-1c7e-449c-9732-bfce81f3a915
--   inspect flag takes the dataframe and returns the Features available, Features datatype, and missing values present in the Dataset.
+- inspect flag takes the dataframe and returns the Features available, Features datatype, and missing values present in the Dataset.
+- File Name: If the current working directory is same as the file location or FILE PATH
 
 ## 🧭 Prepup "File name or File path" -explore
-File Name: If the current working directory is same as the file location or FILE PATH
 https://github.com/sudhanshumukherjeexx/prepup/assets/64360018/eeccaf19-6c2a-4e8c-ab4a-8c3afb59f8c5
--   explore flag takes the dataframe and returns the Features available, Features datatype, Correlation between features, Detects Outliers, Checks Normal Distribution, Checks Skewness, Checks Kurtosis, and also allows the option to check if the dataset is Imbalanced.
+- explore flag takes the dataframe and returns the Features available, Features datatype, Correlation between features, Detects Outliers, Checks Normal Distribution, Checks Skewness, Checks Kurtosis, and also allows the option to check if the dataset is Imbalanced.
+- File Name: If the current working directory is same as the file location or FILE PATH
 
 ## 📊 Prepup "File name or File path" -visualize
-File Name: If the current working directory is same as the file location or FILE PATH
 https://github.com/sudhanshumukherjeexx/prepup/assets/64360018/61fffd53-0b26-4537-ac1d-5296a2f8b52e
--   visualize flag plots of the feature distribution directly on the terminal.
+- visualize flag plots of the feature distribution directly on the terminal.
+- File Name: If the current working directory is same as the file location or FILE PATH
 
 ## 🔥 Prepup "File name or File path" -impute
-File Name: If the current working directory is same as the file location or FILE PATH
 https://github.com/sudhanshumukherjeexx/prepup/assets/64360018/3d0160af-0059-4b4e-b278-abe8a587c5b5
 - There are 8 different strategies available to impute missing data using Prepup
+- File Name: If the current working directory is same as the file location or FILE PATH
 
     - Option 1 - Drops the Missing Data
     - Option 2 - Impute Missing values with a Specific value
@@ -67,16 +67,16 @@ https://github.com/sudhanshumukherjeexx/prepup/assets/64360018/3d0160af-0059-4b4
     - Option 8 - Impute missing values based on K-Nearest Neighbors.
 
 ## 🌐 Prepup "File name or File path" -standardize
-File Name: If the current working directory is same as the file location or FILE PATH
 https://github.com/sudhanshumukherjeexx/prepup/assets/64360018/c098a7aa-1cb9-464b-bd89-1ea3c38b842e
--   Standardize allows you to standardize the dataset using two different methods:
+- Standardize allows you to standardize the dataset using two different methods:
     1. Robust Scaler
 
     2. Standard Scaler 
 
--   Robust Scaler is recommended if there are outliers present and you feel they can have an influence on the Machine Learning model.
+- Robust Scaler is recommended if there are outliers present and you feel they can have an influence on the Machine Learning model.
 
--   Standard Scaler is the go-to function if you want to standardize the dataset before training the model on it.
+- Standard Scaler is the go-to function if you want to standardize the dataset before training the model on it.
+- File Name: If the current working directory is same as the file location or FILE PATH
 
 # License
 -   Free software: MIT license
