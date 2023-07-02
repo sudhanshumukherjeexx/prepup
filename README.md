@@ -41,22 +41,31 @@
 # Command Line Arguments available in PREPUP
 
 ## prepup "File name or File path" -inspect
+<video width="320" height="240" controls>
+  <source src="C:\Users\Asus\prepup\datasets\gif\inspect.mp4" type="video/mp4">
+</video>
 
 -   inspect flag takes the dataframe and returns the Features available, Features datatype and missing values present in the Dataset.
 
 ## prepup "File name or File path" -explore
+<video width="320" height="240" controls>
+  <source src="C:\Users\Asus\prepup\datasets\gif\explore.mp4" type="video/mp4">
+</video>
 
 -   explore flag takes the dataframe and returns the Features available, Features datatype, Correlation between features, Detects Outliers, Checks Normal Distribution, Checks Skewness, Checks Kurtosis and also allows the option to check if the dataset is Imbalanced.
 
-## prepup "File name or File path" -explore
-
--   visualize flag plots the feature distribution directly on the terminal.
-
 ## prepup "File name or File path" -visualize
+<video width="320" height="240" controls>
+  <source src="C:\Users\Asus\prepup\datasets\gif\visualize.mp4" type="video/mp4">
+</video>
 
 -   visualize flag plots the feature distribution directly on the terminal.
 
 ## prepup "File name or File path" -impute
+<video width="320" height="240" controls>
+  <source src="C:\Users\Asus\prepup\datasets\gif\impute.mp4" type="video/mp4">
+</video>
+
 - There are 8 different strategies available to impute missing data using Prepup
 
     - Option 1 - Drops the Missing Data
@@ -69,6 +78,9 @@
     - Option 8 - Impute missing values based on K-Nearest Neighbors.
 
 ## prepup "File name or File path" -standardize
+<video width="320" height="240" controls>
+  <source src="C:\Users\Asus\prepup\datasets\gif\standardize.mp4" type="video/mp4">
+</video>
 
 -   Standardize allows you to standardize the dataset using two different methods:
     1. Robust Scaler
@@ -79,7 +91,6 @@
 
 -   Standard Scaler is go to function if you want to standardize the dataset before training the model on it.
 
-
 # License
 
 -   Free software: MIT license
@@ -88,4 +99,3 @@
 -   Github: https://github.com/sudhanshumukherjeexx/prepup
 
 -   Documentation: https://sudhanshumukherjeexx.github.io/prepup
-    

@@ -19,7 +19,7 @@ def parse_args():
     parser.add_argument('-visualize', action='store_true', help='Visualize Feature Distribution.')
     parser.add_argument('-impute', action='store_true', help='Impute Missing values.')
     parser.add_argument('-standardize', action='store_true', help='Standardize Feature Columns.')
-    parser.add_argument('-rii', action='store_true', help='Convert code to Python Notebook.')
+    parser.add_argument('-rii', action='store_true', help='Convert code to Python Notebook. (#Still Under Development)')
     return parser.parse_args()
 
 def load_file(file_path):
