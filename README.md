@@ -41,16 +41,12 @@
 # Command Line Arguments available in PREPUP
 
 ## prepup "File name or File path" -inspect
-<video width="320" height="240" controls>
-  <source src="C:\Users\Asus\prepup\datasets\gif\inspect.mp4" type="video/mp4">
-</video>
+
 
 -   inspect flag takes the dataframe and returns the Features available, Features datatype and missing values present in the Dataset.
 
 ## prepup "File name or File path" -explore
-<video width="320" height="240" controls>
-  <source src="C:\Users\Asus\prepup\datasets\gif\explore.mp4" type="video/mp4">
-</video>
+https://github.com/sudhanshumukherjeexx/prepup/blob/main/datasets/gif/explore.mp4
 
 -   explore flag takes the dataframe and returns the Features available, Features datatype, Correlation between features, Detects Outliers, Checks Normal Distribution, Checks Skewness, Checks Kurtosis and also allows the option to check if the dataset is Imbalanced.
 
